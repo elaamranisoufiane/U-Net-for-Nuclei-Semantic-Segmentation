@@ -94,7 +94,7 @@ if __name__ == "__main__":
     model_path = "files/model.h5"
     csv_path = "files/data.csv"
     """ Dataset """
-    dataset_path = "C:/Users/elaam/OneDrive/Bureau/Segmentation Project/Cell-Nuclei-Segmentation-in-TensorFlow-2.0/DSB"
+    dataset_path = "/content/U-Net-for-Nuclei-Semantic-Segmentation/DSB"
     (train_x, train_y), (valid_x, valid_y), (test_x, test_y) = load_data(dataset_path)
     train_x, train_y = shuffle(train_x,train_y)
     print(f"Train: {len(train_x)} - {len(train_y)}")
