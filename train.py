@@ -12,6 +12,8 @@ from tensorflow.keras.optimizers import Adam
 from tensorflow.keras.metrics import Recall, Precision
 from model import build_unet
 from metrics import dice_coef, iou
+from matplotlib import pyplot as plt
+#import matplotlib.image as mpimg
 
 # input image size
 H = 256
@@ -123,7 +125,7 @@ if __name__ == "__main__":
         CSVLogger(csv_path),
         EarlyStopping(monitor='val_loss', patience=20, restore_best_weights=False),
     ]
-    model.fit(
+    history = model.fit(
         train_dataset,
         epochs=num_epochs,
         validation_data=valid_dataset,
@@ -132,3 +134,27 @@ if __name__ == "__main__":
         callbacks=callbacks,
         shuffle=False
     )
+    loss = history.history['loss']
+    val_loss = history.history['val_loss']
+    epochs = range(1, len(val_loss) + 1)
+    plt.plot(epochs, loss, 'y', label='Training loss')
+    plt.plot(epochs, val_loss, 'r', label='Validation loss')
+    plt.title('Training and validation loss')
+    plt.xlabel('Epochs')
+    plt.ylabel('Loss')
+    plt.legend()
+    plt.savefig('loss.png')
+    plt.show()
+    
+    #plt.imshow(mpimg.imread('/content/loss.png'))
+
+    accu = history.history['accuracy']
+    epochs = range(1, len(val_loss) + 1)
+    plt.plot(epochs, accu, 'r', label='accuracy')
+    plt.title('accuracy')
+    plt.xlabel('Epochs')
+    plt.ylabel('accuracy')
+    plt.legend()
+    plt.savefig('accuracy.png')
+    plt.show()
+    #plt.imshow(mpimg.imread('/content/accuracy.png'))
