@@ -13,7 +13,7 @@ from tensorflow.keras.metrics import Recall, Precision
 from model import build_unet
 from metrics import dice_coef, iou
 from matplotlib import pyplot as plt
-#import matplotlib.image as mpimg
+import matplotlib.image as mpimg
 
 # input image size
 H = 256
@@ -92,7 +92,7 @@ if __name__ == "__main__":
     """ Hyperparaqmeters """
     batch_size = 8
     lr = 1e-4  ## 0.0001
-    num_epochs = 10
+    num_epochs = 200
     model_path = "files/model.h5"
     csv_path = "files/data.csv"
     """ Dataset """
@@ -117,13 +117,13 @@ if __name__ == "__main__":
         break
     """ build the model with U-Net network archtecture """
     model = build_unet((H, W, 3))
-    metrics = [dice_coef, iou, Recall(), Precision()]
+    metrics = ["accuracy",dice_coef, iou, Recall(), Precision()]
     model.compile(loss="binary_crossentropy", optimizer=Adam(lr), metrics=metrics)
     callbacks =[
         ModelCheckpoint(model_path, verbose=1, save_best_only=True),
         ReduceLROnPlateau(monitor='val_loss', factor=0.1, patience=5, min_lr=1e-7, verbose=1),
         CSVLogger(csv_path),
-        EarlyStopping(monitor='val_loss', patience=20, restore_best_weights=False),
+        #EarlyStopping(monitor='val_loss', patience=20, restore_best_weights=False),
     ]
     history = model.fit(
         train_dataset,
