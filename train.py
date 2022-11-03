@@ -96,7 +96,10 @@ if __name__ == "__main__":
     model_path = "files/model.h5"
     csv_path = "files/data.csv"
     """ Dataset """
-    dataset_path = "/content/U-Net-for-Nuclei-Semantic-Segmentation/DSB"
+    #colab
+    #dataset_path = "/content/U-Net-for-Nuclei-Semantic-Segmentation/DSB"
+    #kuggle
+    dataset_path = "./U-Net-for-Nuclei-Semantic-Segmentation/DSB"
     (train_x, train_y), (valid_x, valid_y), (test_x, test_y) = load_data(dataset_path)
     train_x, train_y = shuffle(train_x,train_y)
     print(f"Train: {len(train_x)} - {len(train_y)}")
