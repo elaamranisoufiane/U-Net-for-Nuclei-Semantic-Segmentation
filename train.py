@@ -92,7 +92,7 @@ if __name__ == "__main__":
     """ Hyperparaqmeters """
     batch_size = 8
     lr = 1e-4  ## 0.0001
-    num_epochs = 200
+    num_epochs = 120
     model_path = "files/model.h5"
     csv_path = "files/data.csv"
     """ Dataset """
@@ -149,7 +149,7 @@ if __name__ == "__main__":
     #plt.imshow(mpimg.imread('/content/loss.png'))
 
     accu = history.history['accuracy']
-    epochs = range(1, len(val_loss) + 1)
+    epochs = range(1, len(accu) + 1)
     plt.plot(epochs, accu, 'r', label='accuracy')
     plt.title('accuracy')
     plt.xlabel('Epochs')
