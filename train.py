@@ -99,7 +99,7 @@ if __name__ == "__main__":
     #colab
     #dataset_path = "/content/U-Net-for-Nuclei-Semantic-Segmentation/DSB"
     #kuggle
-    dataset_path = "./UNetforNucleiSemanticSegmentation/DSB"
+    dataset_path = "./DBA"
     (train_x, train_y), (valid_x, valid_y), (test_x, test_y) = load_data(dataset_path)
     train_x, train_y = shuffle(train_x,train_y)
     print(f"Train: {len(train_x)} - {len(train_y)}")
