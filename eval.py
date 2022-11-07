@@ -63,7 +63,7 @@ if __name__ == "__main__":
         #model.summary()
 
     """ Dataset """
-    dataset_path = "/content/U-Net-for-Nuclei-Semantic-Segmentation/DSB"
+    dataset_path = "./DBA"
     (train_x, train_y), (valid_x, valid_y), (test_x, test_y) = load_data(dataset_path)
 
     """ Prediction and metrics values """
