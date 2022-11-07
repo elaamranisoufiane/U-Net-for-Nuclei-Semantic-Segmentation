@@ -70,8 +70,8 @@ def tf_dataset(X, Y, batch=8):
 
 
 def load_data(path, split=0.2):
-    images = sorted(glob(os.path.join(path, "images", "*.jpg")))
-    masks = sorted(glob(os.path.join(path, "masks", "*.jpg")))
+    images = sorted(glob(os.path.join(path, "outputImages", "*.jpg")))
+    masks = sorted(glob(os.path.join(path, "outputMasks", "*.jpg")))
     size = int(len(images) * split)
 
     train_x, valid_x = train_test_split(images, test_size=size, random_state=42)
